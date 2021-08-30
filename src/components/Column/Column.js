@@ -1,19 +1,19 @@
 import React from "react";
 import "./Column.scss"
-import Task from "../Task/Task";
+import Card from "../Card/Card";
+import {mapOrder} from "../../untilities/sort";
 
 
-function Column(){
-    return(
+function Column(props) {
+    const {column} = props
+    const cards =mapOrder(column.card,column.cardOrder,'id')
+    return (
         <div className="column">
             <header>
-                Add List
+                {column.title}
             </header>
             <ul className="task-list">
-                <Task/>
-                <Task/>
-                <Task/>
-                <Task/>
+                {cards.map((card,index)=><Card key={index} card={card}/>)}
             </ul>
             <footer>
                 Add another card
