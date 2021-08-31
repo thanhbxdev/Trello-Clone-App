@@ -5,13 +5,14 @@ import { initialData } from '../../actions/initialData'
 import { isEmpty } from 'lodash'
 import { mapOrder } from '../../untilities/sort'
 import { Container, Draggable } from 'react-smooth-dnd'
+import { applyDrag } from '../../untilities/dragDrop'
 
 function BoardContent() {
   const [board, setBoard] = useState({})
   const [columns, setColumns] = useState([])
 
   useEffect(() => {
-    const boardDB = initialData.boards.find(board => board.id==='board-1')
+    const boardDB = initialData.boards.find(board => board.id === 'board-1')
     if (boardDB) {
       setBoard(boardDB)
 
@@ -24,7 +25,27 @@ function BoardContent() {
     return <div className="not-found">Board Not Found</div>
   }
   const onColumnDrop = (dropResult) => {
-    console.log(dropResult)
+    let newColumns = [...columns]
+    newColumns = applyDrag(newColumns, dropResult)
+
+    let newBoard = { ...board }
+    newBoard.columnOrder = newColumns.map(c => c.id)
+    newBoard.columns = newColumns
+
+    setColumns(newColumns)
+    setBoard(newBoard)
+  }
+  const onCardDrop = (columnId, dropResult) => {
+    if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
+      let newColumns = [...columns]
+      let currentColumn = newColumns.find(c => c.id === columnId)
+
+      currentColumn.card = applyDrag(currentColumn.card, dropResult)
+      currentColumn.cardOrder = currentColumn.card.map(i => i.id)
+
+      setColumns(newColumns)
+    }
+
   }
 
   return (
@@ -42,10 +63,13 @@ function BoardContent() {
       >
         {columns.map((column, index) => (
           <Draggable key={index}>
-            <Column column={column}/>
+            <Column column={column} onCardDrop={onCardDrop}/>
           </Draggable>
         ))}
       </Container>
+      <div className="add-row-column">
+        <i className="fa fa-plus"/> Add another column
+      </div>
     </div>
   )
 }
