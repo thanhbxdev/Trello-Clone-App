@@ -6,6 +6,10 @@ $common-bg-element: rgba(255, 255, 255, .24);
   overflow-x: auto;
   overflow-y: hidden;
   display: flex;
+  &:after {
+    content: '';
+    flex: 0 0 $gap;
+  }
 
   &::-webkit-scrollbar {
     -webkit-appearance: none;
@@ -26,7 +30,7 @@ $common-bg-element: rgba(255, 255, 255, .24);
   }
   .add-row-column{
     width: 285px;
-    height: 32px;
+    max-width: 285px;
     line-height: 32px;
     padding: 4px 0 4px 15px;
     cursor: pointer;
@@ -38,6 +42,29 @@ $common-bg-element: rgba(255, 255, 255, .24);
 
     &:hover{
       background-color: hsla(0,0,100%,.34);
+    }
+  }
+  .enter-new-column{
+    width: 285px;
+    max-width: 285px;
+    line-height: 32px;
+    padding: 4px 10px;
+    margin-left: $gap;
+    background-color: $column-bg-color;
+    border-radius:5px ;
+    .input-enter-new-column{
+      margin: 5px 0;
+    }
+    span.cancel-new-column{
+      margin-left: $gap;
+      cursor: pointer;
+      i{
+        font-size: 18px;
+        color: $alert-danger;
+        &:hover{
+          color: darken($alert-danger,10);
+        }
+      }
     }
   }
 
