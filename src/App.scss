@@ -8,8 +8,13 @@ body {
 }
 
 .trello-master {
+  color: $app-main-text-color;
   height: 100vh;
   overflow: hidden;
   background-color: $board-bg-color;
+  .fa{
+    font-size: 14px;
+    margin-right: 3px;
+  }
 
 }

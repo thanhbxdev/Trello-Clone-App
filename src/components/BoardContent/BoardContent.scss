@@ -5,6 +5,7 @@ $common-bg-element: rgba(255, 255, 255, .24);
   height: $board-content-height;
   overflow-x: auto;
   overflow-y: hidden;
+  display: flex;
 
   &::-webkit-scrollbar {
     -webkit-appearance: none;
@@ -22,6 +23,22 @@ $common-bg-element: rgba(255, 255, 255, .24);
     background-color: rgba(150, 150, 200, 0.1);
     border: 1px dashed #abc;
     margin: 5px 45px 5px 5px;
+  }
+  .add-row-column{
+    width: 285px;
+    height: 32px;
+    line-height: 32px;
+    padding: 4px 0 4px 15px;
+    cursor: pointer;
+    color: white;
+    margin-left: $gap;
+    font-size: 15px;
+    background-color: hsla(0,0,100%,.24);
+    border-radius:5px ;
+
+    &:hover{
+      background-color: hsla(0,0,100%,.34);
+    }
   }
 
 
