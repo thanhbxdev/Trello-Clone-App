@@ -19,7 +19,7 @@ export const initialData = {
               boardId: 'board-1',
               columnId: 'column-1',
               title: 'Title of card 1',
-              cover: 'https://picsum.photos/700/700'
+              cover: 'https://picsum.photos/500/500'
             },
             { id: 'card-2', boardId: 'board-1', columnId: 'column-1', title: 'Title of card 2', cover: null },
             { id: 'card-3', boardId: 'board-1', columnId: 'column-1', title: 'Title of card 3', cover: null },
