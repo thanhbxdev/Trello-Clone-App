@@ -100,7 +100,7 @@ function Column(props) {
           <Dropdown>
             <Dropdown.Toggle size="sm" id="dropdown-basic" className="dropdown-btn"/>
             <Dropdown.Menu>
-              <Dropdown.Item>Add card</Dropdown.Item>
+              <Dropdown.Item onClick={toggleOpenNewCard}>Add card</Dropdown.Item>
               <Dropdown.Item onClick={toggleConfirm}>Remove column</Dropdown.Item>
               <Dropdown.Item>Move all card in this column(beta)...</Dropdown.Item>
               <Dropdown.Item>Archive all card in this column(beta)...</Dropdown.Item>
