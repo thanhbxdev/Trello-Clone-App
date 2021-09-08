@@ -12,11 +12,10 @@ import { cloneDeep } from 'lodash'
 
 function Column(props) {
   const { column, onCardDrop, onUpdateColumn } = props
-
   const [openNewCard, setOpenNewCard] = useState(false)
   const toggleOpenNewCard = () => {setOpenNewCard(!openNewCard)}
 
-  const cards = mapOrder(column.card, column.cardOrder, 'id')
+  const cards = mapOrder(column.cards, column.cardOrder, '_id')
 
   const [showConfirm, setShowConfirm] = useState(false)
 
@@ -74,7 +73,7 @@ function Column(props) {
     }
     let newColumn = cloneDeep(column) //khong thay doi data goc
     newColumn.card.push(newCardToAdd)
-    newColumn.cardOrder.push(newCardToAdd.id)
+    newColumn.cardOrder.push(newCardToAdd._id)
     onUpdateColumn(newColumn)
     setNewCardTitle('')
     toggleOpenNewCard()
@@ -111,7 +110,7 @@ function Column(props) {
       <div className="card-list">
         <Container
           groupName="col"
-          onDrop={dropResult => onCardDrop(column.id, dropResult)}
+          onDrop={dropResult => onCardDrop(column._id, dropResult)}
           getChildPayload={index => cards[index]}
           dragClass="card-ghost"
           dropClass="card-ghost-drop"

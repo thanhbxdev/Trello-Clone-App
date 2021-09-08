@@ -7,6 +7,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "audit": "0.0.6",
+    "axios": "^0.21.4",
     "bootstrap": "^5.1.0",
     "eslint": "^7.32.0",
     "eslint-plugin-react": "^7.25.1",
