@@ -6,7 +6,7 @@ import { mapOrder } from '../../untilities/sort'
 import { Container, Draggable } from 'react-smooth-dnd'
 import { Button, Col, Container as BootstrapContainer, Form, Row } from 'react-bootstrap'
 import { applyDrag } from '../../untilities/dragDrop'
-import { fetchFullBoard } from '../../actions/ApiCall'
+import { createNewColumn, fetchFullBoard } from '../../actions/ApiCall'
 
 function BoardContent() {
   const [board, setBoard] = useState({})
@@ -68,22 +68,21 @@ function BoardContent() {
       return
     }
     const newColumnToAdd = {
-      id: Math.random().toString(36).substr(2, 5),
-      boardId: 'board-1',
-      title: newColumnTitle.trim(),
-      cardOrder: [],
-      card: []
+      boardId: board._id,
+      title: newColumnTitle.trim()
     }
-    let newColumns = [...columns]
-    newColumns.push(newColumnToAdd)
-    let newBoard = { ...board }
-    newBoard.columnOrder = newColumns.map(c => c._id)
-    newBoard.columns = newColumns
+    createNewColumn(newColumnToAdd).then(column => {
+      let newColumns = [...columns]
+      newColumns.push(column)
+      let newBoard = { ...board }
+      newBoard.columnOrder = newColumns.map(c => c._id)
+      newBoard.columns = newColumns
 
-    setColumns(newColumns)
-    setBoard(newBoard)
-    setNewColumnTitle('')
-    toggleOpenNewColumn()
+      setColumns(newColumns)
+      setBoard(newBoard)
+      setNewColumnTitle('')
+      toggleOpenNewColumn()
+    })
   }
   const onUpdateColumn = (newTitleColumnUpdate) => {
     const columnIdtoUpdate = newTitleColumnUpdate._id

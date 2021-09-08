@@ -8,6 +8,7 @@ import ConfirmModal from '../Common/ConfirmModal'
 import { MODAL_ACTION_CONFIRM } from '../../untilities/constants'
 import { saveContentEnter, selectAllInlineText } from '../../untilities/contentEditable'
 import { cloneDeep } from 'lodash'
+import { createNewCard, updateColumnAPI } from '../../actions/ApiCall'
 
 
 function Column(props) {
@@ -46,17 +47,26 @@ function Column(props) {
         ...column,
         _destroy:true
       }
-      onUpdateColumn(newColumn)
+      updateColumnAPI(newColumn._id, newColumn).then(dataUpdate => {
+        onUpdateColumn(dataUpdate)
+      })
     }
     toggleConfirm()
   }
 
   const handleTitleBlur = () => {
-    const newColumn ={
-      ...column,
-      title:columnTitle
+    if (columnTitle !== column.title) {
+      const newColumn ={
+        ...column,
+        title:columnTitle
+      }
+      updateColumnAPI(newColumn._id, newColumn).then(dataUpdate => {
+        dataUpdate.cards = newColumn.cards
+        onUpdateColumn(dataUpdate)
+      })
     }
-    onUpdateColumn(newColumn)
+
+
   }
 
   const addNewCard =() => {
@@ -65,18 +75,19 @@ function Column(props) {
       return
     }
     const newCardToAdd = {
-      id: Math.random().toString(36).substr(2, 5),
       boardId: column.boardId,
-      columnId: column.id,
-      title: newCardTitle.trim(),
-      cover: null
+      columnId: column._id,
+      title: newCardTitle.trim()
     }
-    let newColumn = cloneDeep(column) //khong thay doi data goc
-    newColumn.card.push(newCardToAdd)
-    newColumn.cardOrder.push(newCardToAdd._id)
-    onUpdateColumn(newColumn)
-    setNewCardTitle('')
-    toggleOpenNewCard()
+    createNewCard(newCardToAdd).then(card => {
+      let newColumn = cloneDeep(column) //khong thay doi data goc
+      newColumn.cards.push(card)
+      newColumn.cardOrder.push(card._id)
+      onUpdateColumn(newColumn)
+      setNewCardTitle('')
+      toggleOpenNewCard()
+    })
+
   }
   return (
     <div className="column">
