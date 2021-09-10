@@ -12,7 +12,12 @@ body {
   color: $app-main-text-color;
   height: 100vh;
   overflow: hidden;
-  background-color: $board-bg-color;
+  //background-color: $board-bg-color;
+  background-image: url(./assets/img/photo-1631031651060-424d82e511de.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
 
   .fa {
     font-size: 14px;

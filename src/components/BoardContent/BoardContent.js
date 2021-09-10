@@ -157,7 +157,7 @@ function BoardContent() {
         {!openNewColumn &&
                 <Row>
                   <Col className="add-row-column" onClick={toggleOpenNewColumn}>
-                    <i className="fa fa-plus icon"/> Add another column
+                    <i className="fa fa-plus icon"/> Thêm danh sách khác
                   </Col>
                 </Row>
         }

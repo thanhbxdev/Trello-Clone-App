@@ -1,7 +1,7 @@
 @import "src/setting";
 $column-header-height: 40px;
 $column-footer-height: 40px;
-$column-border-radius: 5px;
+$column-border-radius: 3px;
 $list-color: #333;
 $column-height:calc(#{$board-content-height} - #{$gap * 2});
 
@@ -20,7 +20,7 @@ $column-height:calc(#{$board-content-height} - #{$gap * 2});
     padding: 5px 8px;
     height: $column-header-height;
     line-height: $column-header-height;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     border-top-left-radius: $column-border-radius;
     border-top-right-radius: $column-border-radius;
@@ -70,7 +70,7 @@ $column-height:calc(#{$board-content-height} - #{$gap * 2});
     color: #888;
     height: $column-footer-height;
     line-height: $column-footer-height;
-    font-size: 16px;
+    font-size: 14px;
     border-bottom-left-radius: $column-border-radius;
     border-bottom-right-radius: $column-border-radius;
     .footer-actions{
