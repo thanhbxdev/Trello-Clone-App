@@ -14,7 +14,12 @@ function Card(props) {
             />
       }
 
-      {card.title}
+      <span>{card.title}</span>
+      <div className="date">
+        <span>
+          <i className="fa fa-calendar"></i> 11 tháng 9
+        </span>
+      </div>
     </div>
   )
 }

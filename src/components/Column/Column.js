@@ -166,7 +166,7 @@ function Column(props) {
         }
         {!openNewCard &&
         <div className="footer-actions" onClick={toggleOpenNewCard}>
-          <i className="fa fa-plus" /> Add another card
+          <i className="fa fa-plus" />Thêm thẻ
         </div>
         }
       </footer>
