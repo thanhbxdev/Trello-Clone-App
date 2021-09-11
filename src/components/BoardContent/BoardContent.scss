@@ -56,6 +56,16 @@ $common-bg-element: rgba(255, 255, 255, .24);
       margin: 5px 0;
     }
   }
-
-
+}
+.not-found{
+  height: $board-content-height;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  font-size: 72px;
+  text-transform: uppercase;
+  background: linear-gradient(to right, #30CFD0 0%, #330867 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

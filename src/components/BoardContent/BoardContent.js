@@ -36,7 +36,9 @@ function BoardContent() {
     }
   }, [openNewColumn])
   if (isEmpty(board)) {
-    return <div className="not-found">Board Not Found</div>
+    return <div className="not-found">
+      <div>Board Not Found</div>
+    </div>
   }
   const onColumnDrop = (dropResult) => {
     let newColumns = cloneDeep(columns)
